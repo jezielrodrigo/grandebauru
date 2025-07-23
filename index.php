@@ -27,5 +27,6 @@
     }
   </script>
 </body>
+  <?php echo "Teste"; ?>
 </html>
 
