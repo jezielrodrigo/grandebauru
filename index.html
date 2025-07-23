@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Teste Google Sheets2</title>
-</head>
+<head><meta charset="UTF-8"><title>Teste Google Sheets CORS</title></head>
 <body>
-  <button onclick="adicionarLinha()">Adicionar Linha</button>
-
+  <h2>Teste de Envio para Google Sheets</h2>
+  <button onclick="adicionarLinha()">Enviar Nova Linha</button>
   <script>
     async function adicionarLinha() {
-      const novaLinha = ["Jeziel", "29"];
+      const novaLinha = ["Teste Assistente", new Date().toLocaleString()];
       const payload = "dados=" + encodeURIComponent(JSON.stringify(novaLinha));
 
       try {
-        const res = await fetch("https://script.google.com/macros/s/AKfycbzdDQ_rkqjc-48avcuZov0VZtUHKxIcBOiNpjBxQ9XHZnxAtg7bKOyy10zXlq9bS8r7/exec", {
+        const res = await fetch("https://script.google.com/macros/s/AKfycbxAMPLE1234567/exec", {
           method: "POST",
           headers: {
             "Content-Type": "application/x-www-form-urlencoded"
@@ -22,9 +19,9 @@
         });
 
         const texto = await res.text();
-        alert("Resposta do Google: " + texto);
+        alert("Resposta do Script: " + texto);
       } catch (err) {
-        alert("Erro na requisição: " + err);
+        alert("Falha: " + err);
         console.error(err);
       }
     }
