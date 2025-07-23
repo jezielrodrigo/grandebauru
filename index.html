@@ -1,35 +1,34 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <title>Título da página Alterou</title>
-    <meta charset="utf-8">
-  </head>
-  <body>
-    Aqui vai o código HTML que fará seu site aparecer.
-  </body>
-	<script>
-async function adicionarLinha() {
-  const novaLinha = ["Jeziel", "29"];
-  const payload = "dados=" + encodeURIComponent(JSON.stringify(novaLinha));
+<head>
+  <meta charset="UTF-8">
+  <title>Teste Google Sheets</title>
+</head>
+<body>
+  <button onclick="adicionarLinha()">Adicionar Linha</button>
 
-  try {
-    const res = await fetch("https://script.google.com/macros/s/AKfycbzdDQ_rkqjc-48avcuZov0VZtUHKxIcBOiNpjBxQ9XHZnxAtg7bKOyy10zXlq9bS8r7/exec", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      body: payload
-    });
+  <script>
+    async function adicionarLinha() {
+      const novaLinha = ["Jeziel", "29"];
+      const payload = "dados=" + encodeURIComponent(JSON.stringify(novaLinha));
 
-    const texto = await res.text();
-    alert("Resposta: " + texto);
-  } catch (err) {
-    alert("Erro: " + err);
-  }
-}
-	</script>
+      try {
+        const res = await fetch("https://script.google.com/macros/s/AKfycbzdDQ_rkqjc-48avcuZov0VZtUHKxIcBOiNpjBxQ9XHZnxAtg7bKOyy10zXlq9bS8r7/exec", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          body: payload
+        });
 
-	<button onclick="adicionarLinha()">Enviar para Google Sheets</button>
-
-
+        const texto = await res.text();
+        alert("Resposta do Google: " + texto);
+      } catch (err) {
+        alert("Erro na requisição: " + err);
+        console.error(err);
+      }
+    }
+  </script>
+</body>
 </html>
+
